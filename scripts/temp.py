@@ -45,15 +45,40 @@
 #     for img in building_images:
 #         print(img)
 
-import pandas as pd
+# import pandas as pd
 
-# Read the CSS file into a DataFrame
-df = pd.read_csv('data/property_images/property_data.csv', sep=',')
+# # Read the CSS file into a DataFrame
+# df = pd.read_csv('data/property_images/property_data.csv', sep=',')
 
-# Add prefix to "Detail Link" column
-df['Detail Link'] = 'https://www.estately.com' + df['Detail Link']
+# # Add prefix to "Detail Link" column
+# df['Detail Link'] = 'https://www.estately.com' + df['Detail Link']
 
-# Display the DataFrame
-print(df)
-# # Save the DataFrame to a new CSV filex
-df.to_csv('data/property_images/property_data.csv', index=False)
+# # Display the DataFrame
+# print(df)
+# # # Save the DataFrame to a new CSV filex
+# df.to_csv('data/property_images/property_data.csv', index=False)
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 数据
+labels = ['Benchmark1', 'Benchmark2', 'Benchmark3', 'Benchmark4', 'Benchmark5']
+values = [4.0, 3.5, 4.5, 3.0, 4.0]
+
+# 计算角度
+angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
+
+# 闭合图形
+values += values[:1]
+angles += angles[:1]
+
+fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+
+ax.fill(angles, values, color='blue', alpha=0.25)
+ax.plot(angles, values, color='blue', linewidth=2)
+
+ax.set_yticklabels([])
+ax.set_xticks(angles[:-1])
+ax.set_xticklabels(labels)
+
+plt.show()
